@@ -1,0 +1,7 @@
+SQL:
+  username: root
+  password: password
+  host: localhost
+  database: minecraft
+  port: 3306
+  table: Bans

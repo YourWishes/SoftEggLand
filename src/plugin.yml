@@ -1,0 +1,388 @@
+name: SoftEggLand
+description: Full plugin that handles most of SoftEggLand's features.
+main: com.minecraft.softegg.SoftEggLand
+authors: [Dominic]
+website: http://minecraft.softegg.com/
+version: 2.60
+depend: [Vault, LWC, WorldGuard, ForumAA]
+load: POSTWORLD
+commands:
+   help:
+      description: Get help.
+      aliases: [gethelp]
+      usage: /<command> [page]
+   jobs:
+      description: Get help.
+      aliases: [getjobs]
+      usage: /<command>
+   head:
+      description: Get head.
+      usage: /<command> (player)
+      aliases: [selhead]
+   mailbox:
+      description: Sets a mailbox.
+      usage: /<command> set
+   senditem:
+      description: Send item to player.
+      usage: /<command> [player]
+   bobcast:
+      description: Announce your evil.
+      usage: /<command> [message]
+      permission: SoftEggLand.BobCast
+      permission-message: §cYou don't have permission.
+   playermessage:
+      description: Sends a message to a player with no formatting.
+      usage: /<command> [player] [message]
+      permission: SoftEggLand.PlayerMessage
+      permission-message: §cYou don't have permission.
+   tell:
+      description: Messages a player privately.
+      usage: /tell [player] [message]
+      permission: SoftEggLand.tell
+      aliases: [msg, pm, message, whisper, w, send, seltell]
+   reply:
+      description: Replies to the last player messaged.
+      usage: /reply [message]
+      permission: SoftEggLand.reply
+      aliases: [r]
+   ban:
+      description: Bans a player with a specified reason.
+      usage: /<command> [player] (length) [reason]
+      permission: SoftEggLand.ban
+      permission-message: §cYou don't have permission.
+      aliases: [tempban, selban, banish]
+   kick:
+      description: Kicks a player with a specified reason.
+      usage: /<command> [player] [reason]
+      permission: SoftEggLand.kick
+      permission-message: §cYou don't have permission.
+      aliases: [selkick]
+   warn:
+      description: Warns a player with a message.
+      usage: /<command> [player] [reason]
+      permission: SoftEggLand.warn
+      permission-message: §cYou don't have permission.
+      aliases: [selwarn]
+   strike:
+      description: Adds a staff strike to a player, 3 strikes and they're out.
+      usage: /<command> [player] [reason]
+      permission: SoftEggLand.strike
+      permission-message: §cYou don't have permission.
+      aliases: [selstrike, modstrike, policestrike]
+   pardon:
+      description: Unbans a player.
+      usage: /<command> [player]
+      permission: SoftEggLand.pardon
+      aliases: [unban, selpardon, selunban]
+      permission-message: §cYou don't have permission.
+   mute:
+      description: Warns a player with a message.
+      usage: /<command> [player] (duration) [reason]
+      permission: SoftEggLand.mute
+      permission-message: §cYou don't have permission.
+      aliases: [selmute, quiet, shutup, installwindowsvistakeyboarddrivers]
+   playerinfo:
+      description: Displays Player Info.
+      usage: /<command> [player] (page)
+      permission: SoftEggLand.pinfo
+      permission-message: §cYou don't have permission.
+      aliases: [warns, kicks, bans, strikes, mutes]
+   bunny:
+      description: Gives the user the 2012 Bunny Helm.
+      usage: /<command>
+      permission: SoftEggLand.bunny
+   getrep:
+      description: Gets the reputation of a player.
+      aliases: [getreputation, selgetrep]
+      usage: /<command> [player]
+      permission: SoftEggLand.getrep
+   giverep:
+      description: Gives reputation to a player.
+      aliases: [addrep, givereputation, addreputation, selgiverep]
+      usage: /<command> [player] [amount]
+      permission: SoftEggLand.giverep
+   setrep:
+      description: Sets the reputation of a player.
+      aliases: [setreputation, selsetrep]
+      usage: /<command> [player] [amount]
+      permission: SoftEggLand.setrep
+   sendrep:
+      description: Sends reputation to other players.
+      aliases: [sr, selsr]
+      usage: /<command> [player] [amount]
+      permission: SoftEggLand.sendrep
+   buykit:
+      description: Buys a kit using reputation.
+      aliases: [buy, selbuy]
+      usage: /<command> [kitname]
+      permission: SoftEggLand.buykit
+   rocket:
+      description: Launches a player on a rocket.
+      usage: /<command> [player]
+      permission: SoftEggLand.rocket
+      aliases: [selrocket]
+   explode:
+      description: Explodes a player.
+      usage: /<command> [player]
+      permission: SoftEggLand.explode
+      aliases: [selexplode]
+   joinarena:
+      description: Joins a mob arena.
+      usage: /<command> [arena]
+      permission: SoftEggLand.joinarena
+      aliases: [join]
+   leavearena:
+      description: Quit a mob arena.
+      usage: /<command>
+      permission: SoftEggLand.leavearena
+      aliases: [leave]
+   setmotd:
+      description: Sets the servers Message Of The Day.
+      usage: /<command> [motd]
+      permission: SoftEggLand.setmotd
+   stats:
+      description: Gets MMO Stats.
+      usage: /<command> [player]
+      permission: SoftEggLand.stats
+      aliases: [stat]
+   hostgame:
+      description: Host a player game.
+      usage: /<command> [name]
+      permission: SoftEggLand.hostgame
+      aliases: [hg, hostg, host, hgame]
+   joingame:
+      description: Join a player game.
+      usage: /<command> [name]
+      permission: SoftEggLand.joingame
+   leavegame:
+      description: Leave a player game.
+      usage: /<command> [name]
+   closegame:
+      description: Join a player game.
+      usage: /<command> (name | winner)
+      permission: SoftEggLand.closegame
+      aliases: [winner, finishgame]
+   games:
+      description: Shows all games.
+      usage: /<command>
+   game:
+      description: Shows current game stats.
+      usage: /<command>
+   gamemsg:
+      description: Sends a message to all game competers.
+      usage: /<command> [message]
+   activated:
+      description: Checks the stats of a player.
+      usage: /<command> [player]
+      permission: SoftEggLand.activated
+      aliases: [isactivated, accountstats]
+   countdown:
+      description: Starts a countdown for all players in the game to see.
+      usage: /<command> [seconds]
+   marry:
+      description: Marry a player.
+      usage: /<command> [player | divorce]
+      permission: SoftEggLand.marry
+      aliases: [marriage, couple]
+   formatusers:
+      description: Format users into a YML.
+      usage: /<command>
+      permission: SoftEggLand.formatusers
+permissions:
+   SoftEggLand.*:
+     description: Gives access to all SoftEggLand permissions
+     children:
+       SoftEggLand.BobCast: true
+       SoftEggLand.PlayerMessage: true
+       SoftEggLand.strike: true
+       SoftEggLand.uselava: true
+       SoftEggLand.color: true
+       SoftEggLand.mod: true
+       SoftEggLand.bunny: true
+       SoftEggLand.setrep: true
+       SoftEggLand.giverep: true
+       SoftEggLand.rocket: true
+       SoftEggLand.explode: true
+       SoftEggLand.setmotd: true
+       SoftEggLand.vanish.kickexempt: true
+       SofteggLand.formatusers: true
+   SoftEggLand.inspector:
+     description: Gives access to all Inspector SoftEggLand permissions
+     children:
+       SoftEggLand.ban.notify: true
+       SoftEggLand.warn.notify: true
+       SoftEggLand.kick.notify: true
+       SoftEggLand.mute.notify: true
+       SoftEggLand.strike.notify: true
+       SoftEggLand.citizen: true
+       SoftEggLand.activated: true
+   SoftEggLand.police:
+     description: Gives access to all Police SoftEggLand permissions
+     children:
+       SoftEggLand.ban: true
+       SoftEggLand.warn: true
+       SoftEggLand.kick: true
+       SoftEggLand.mute: true
+       SoftEggLand.pinfo: true
+       SoftEggLand.mailbox.break: true
+       SoftEggLand.ip.bypass: true
+       SoftEggLand.inspector: true
+       SoftEggLand.invisible: true
+       SoftEggLand.closegame.others: true
+   SoftEggLand.mod:
+     description: Gives access to all Mod SoftEggLand permissions
+     children:
+       SoftEggLand.pardon: true
+       SoftEggLand.police: true
+   SoftEggLand.citizen:
+     description: Gives access to all Citizen SoftEggLand permissions
+     children:
+       SoftEggLand.default: true
+       SoftEggLand.buykit: true
+       SoftEggLand.sendrep: true
+       SoftEggLand.joinarena: true
+       SoftEggLand.leavearena: true
+       SoftEggLand.hostgame: true
+       SoftEggLand.joingame: true
+       SoftEggLand.closegame: true
+       SoftEggLand.marry: true
+   SoftEggLand.default:
+     description: Gives access to default SoftEggLand permissions
+     children:
+       SoftEggLand.tell: true
+       SoftEggLand.reply: true
+       SoftEggLand.getrep: true
+       SoftEggLand.stats: true
+   SoftEggLand.BobCast:
+     description: Allows /bobcast command access.
+     default: op
+   SoftEggLand.PlayerMessage:
+     description: Allows /playermessage command access.
+     default: op
+   SoftEggLand.ban:
+     description: Allows /ban command access, and displays notification.
+     default: op
+     children:
+       SoftEggLand.ban.notify: true
+   SoftEggLand.warn:
+     description: Allows /warn command access, and displays notification.
+     default: op
+     children:
+       SoftEggLand.warn.notify: true
+   SoftEggLand.kick:
+     description: Allows /ban command access, and displays notification.
+     default: op
+     children:
+       SoftEggLand.kick.notify: true
+   SoftEggLand.mute:
+     description: Allows /mute command access, and displays notification.
+     default: op
+     children:
+       SoftEggLand.mute.notify: true
+   SoftEggLand.strike:
+     description: Allows /strike command access, and displays notification.
+     default: op
+     children:
+       SoftEggLand.strike.notify: true
+   SoftEggLand.pardon:
+     description: Allows /pardon command access.
+     default: op
+   SoftEggLand.pinfo:
+     description: Allows /warns, /kicks, /bans, /mutes, /strikes command access.
+     default: op
+   SoftEggLand.uselava:
+     description: Allows a player to use lava while others are nearby.
+     default: op
+   SoftEggLand.tell:
+     description: Allows a player to use the /tell command.
+     default: op
+   SoftEggLand.reply:
+     description: Allows a player to use the /reply command.
+     default: op
+   SoftEggLand.mailbox.break:
+     description: Allows someone to break another players mailbox.
+     default: op
+   SoftEggLand.ip.bypass:
+     description: Allows a player to say IP addresses in chat.
+     default: op
+   SoftEggLand.color:
+     description: Allows a player to talk in color.
+     default: op
+   SoftEggLand.ban.notify:
+     description: Displays notification when a player is banned.
+     default: op
+   SoftEggLand.warn.notify:
+     description: Displays notification when a player is warned.
+     default: op
+   SoftEggLand.kick.notify:
+     description: Displays notification when a player is kicked.
+     default: op
+   SoftEggLand.mute.notify:
+     description: Displays notification when a player is mute.
+     default: op
+   SoftEggLand.strike.notify:
+     description: Displays notification when a player is striked.
+     default: op
+   SoftEggLand.invisible:
+     description: Allows players to interact with invisible players.
+     default: op
+   SoftEggLand.bunny:
+     description: Allows players to use the /bunny command.
+     default: op
+   SoftEggLand.getrep:
+     description: Allows players to use the /getrep command.
+     default: op
+   SoftEggLand.giverep:
+     description: Allows players to use the /giverep command.
+     default: op
+   SoftEggLand.setrep:
+     description: Allows players to use the /setrep command.
+     default: op
+   SoftEggLand.sendrep:
+     description: Allows players to use the /sendrep command.
+     default: op
+   SoftEggLand.buykit:
+     description: Allows players to use the /buykit command.
+     default: op
+   SoftEggLand.rocket:
+     description: Allows players to use the /rocket command.
+     default: op
+   SoftEggLand.explode:
+     description: Allows players to use the /explode command.
+     default: op
+   SoftEggLand.joinarena:
+     description: Allows players to use the /joinarena command.
+     default: op
+   SoftEggLand.leavearena:
+     description: Allows players to use the /leavearena command.
+     default: op
+   SoftEggLand.setmotd:
+     description: Allows players to use the /setmotd command.
+     default: op
+   SoftEggLand.stats:
+     description: Allows players to use the /stats command.
+     default: op
+   SoftEggLand.hostgame:
+     description: Allows players to use the /hostgame command.
+     default: op
+   SoftEggLand.joingame:
+     description: Allows players to use the /joingame command.
+     default: op
+   SoftEggLand.closegame:
+     description: Allows players to use the /closegame command.
+     default: op
+   SoftEggLand.closegame.others:
+     description: Allows players to close games that they didn't start.
+     default: op
+   SoftEggLand.activated:
+     description: Allows players to use the /activated command.
+     default: op
+   SoftEggLand.vanish.kickexempt:
+     description: People with this permission node won't get kicked for overuse of vanish.
+     default: op
+   SoftEggLand.marry:
+     description: Allows players to use the /marry command.
+     default: op
+   SoftEggLand.formatusers:
+     description: Allows players to use the /formatusers command.
+     default: op
